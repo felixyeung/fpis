@@ -1,5 +1,6 @@
 object MyProg {
   def fib(n: Int): Int = {
+    @annotation.tailrec
     def go(n0: Int, n1: Int, n: Int): Int = {
       if (n == 0) n1
       else go(n1, n0 + n1, n-1)
