@@ -7,14 +7,6 @@ object MyModule {
     if (n < 0) -n
     else n
 
-  private def formatAbs(x: Int) = {
-    val msg = "The absolute value of %d is %s"
-    msg.format(x, abs(x))
-  }
-
-  def main (args: Array[String]): Unit =
-    println(formatAbs(-42))
-
   def factorial(n: Int): Int = {
     @annotation.tailrec
     def go(n: Int, acc: Int): Int =
@@ -23,4 +15,18 @@ object MyModule {
 
     go(n, 1)
   }
+
+  private def formatAbs(x: Int) = {
+    val msg = "The absolute value of %d is %d"
+    msg.format(x, abs(x))
+  }
+
+  private def formatFactorial(n: Int) = {
+    val msg = "The factorial of of %d is %d"
+    msg.format(n, factorial(n))
+  }
+
+  def main (args: Array[String]): Unit =
+    println(formatAbs(-42))
+    println(formatFactorial(7))
 }
