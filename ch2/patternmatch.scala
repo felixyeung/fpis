@@ -33,10 +33,10 @@ object PatternMatch{
       }
     }
 
-    def dropWhile[A](as: List[A], f: A => Boolean): List[A] = as match {
+    def dropWhile[A](as: List[A])(f: A => Boolean): List[A] = as match {
       case Nil => Nil
       case Cons(x, xs) => {
-        if (f(x)) dropWhile(xs, f)
+        if (f(x)) dropWhile(xs)(f)
         else Cons(x, xs)
       }
     }
@@ -64,7 +64,7 @@ object PatternMatch{
     println(List.drop(3, List('a', 'b', 'c', 'd', 'e')))
     println(List.drop(5, List('a', 'b', 'c', 'd', 'e')))
     println(List.drop(5, Nil))
-    println(List.dropWhile(List(1,2,3,4,5,6,7), (n: Int) => n <= 5))
+    println(List.dropWhile(List(1,2,3,4,5,6,7))(n => n <= 5))
     println(List.init(List('a', 'b', 'c', 'd', 'e')))
   }
 }
