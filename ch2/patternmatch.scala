@@ -19,6 +19,11 @@ object PatternMatch{
       case Nil => Nil
       case Cons(x, xs) => xs
     }
+
+    def setHead[A](head: A, as: List[A]): List[A] = as match {
+      case Nil => List(head)
+      case Cons(x, xs) => Cons(head, xs)
+    }
   }
 
   def main(args: Array[String]): Unit = {
@@ -32,5 +37,7 @@ object PatternMatch{
 
     println(x)
     println(List.tail(List(1,2,3,4,5)))
+    println(List.setHead(12.24, Nil))
+    println(List.setHead('x', List('a', 'b', 'c', 'd')))
   }
 }
