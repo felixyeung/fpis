@@ -9,9 +9,15 @@ object PatternMatch{
       if (as.isEmpty) Nil
       else Cons(as.head, apply(as.tail: _*))
     }
+
     def sum(ints: List[Int]): Int = ints match {
       case Nil => 0
       case Cons(x, xs) => x + sum(xs)
+    }
+
+    def tail[A](as: List[A]): List[A] = as match {
+      case Nil => Nil
+      case Cons(x, xs) => xs
     }
   }
 
@@ -25,5 +31,6 @@ object PatternMatch{
     }
 
     println(x)
+    println(List.tail(List(1,2,3,4,5)))
   }
 }
