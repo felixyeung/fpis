@@ -24,6 +24,14 @@ object PatternMatch{
       case Nil => List(head)
       case Cons(x, xs) => Cons(head, xs)
     }
+
+    def drop[A](n: Int, as: List[A]): List[A] = as match {
+      case Nil => Nil
+      case Cons(x, xs) => {
+        if (n == 0) Cons(x, xs)
+        else drop(n-1, xs)
+      }
+    }
   }
 
   def main(args: Array[String]): Unit = {
@@ -39,5 +47,8 @@ object PatternMatch{
     println(List.tail(List(1,2,3,4,5)))
     println(List.setHead(12.24, Nil))
     println(List.setHead('x', List('a', 'b', 'c', 'd')))
+    println(List.drop(3, List('a', 'b', 'c', 'd', 'e')))
+    println(List.drop(5, List('a', 'b', 'c', 'd', 'e')))
+    println(List.drop(5, Nil))
   }
 }
