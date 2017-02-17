@@ -40,6 +40,12 @@ object PatternMatch{
         else Cons(x, xs)
       }
     }
+
+    def init[A](as: List[A]): List[A] = as match {
+      case Nil => Nil
+      case Cons(x, Nil) => Nil
+      case Cons(x, xs) => Cons(x, init(xs))
+    }
   }
 
   def main(args: Array[String]): Unit = {
@@ -59,5 +65,6 @@ object PatternMatch{
     println(List.drop(5, List('a', 'b', 'c', 'd', 'e')))
     println(List.drop(5, Nil))
     println(List.dropWhile(List(1,2,3,4,5,6,7), (n: Int) => n <= 5))
+    println(List.init(List('a', 'b', 'c', 'd', 'e')))
   }
 }
