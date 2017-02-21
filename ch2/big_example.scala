@@ -10,6 +10,22 @@ object PatternMatch{
       else Cons(as.head, apply(as.tail: _*))
     }
 
+    def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B = 
+      as match {
+        case Nil => z
+        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+      }
+
+    def foldLeft[A,B](as: List[A], z: B)(f: (B, A) => B): B = 
+    as match {
+      case Nil => z
+      case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
+    }
+
+    def length[A](as: List[A]): Int = {
+      foldRight(as, 0)((_, len) => len + 1)
+    }
+
     def sum(ints: List[Int]): Int = ints match {
       case Nil => 0
       case Cons(x, xs) => x + sum(xs)
@@ -66,5 +82,11 @@ object PatternMatch{
     println(List.drop(5, Nil))
     println(List.dropWhile(List(1,2,3,4,5,6,7))(n => n <= 5))
     println(List.init(List('a', 'b', 'c', 'd', 'e')))
+    println(List.foldRight(List(1, 2, 3, 4), 0)(_ + _))
+    println(List.foldRight(List(1, 2, 3, 4), 1)(_ * _))
+    println(List.length(List(1, 2, 3, 4)))
+    println(List.foldLeft(List(1, 2, 3, 4), 0)(_ + _))
+    println(List.foldLeft(List(1, 2, 3, 4), 1)(_ * _))
+    println(List.foldLeft(List(1, 2, 3, 4), 0)((b, _) => b + 1))
   }
 }
